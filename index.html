@@ -6,3 +6,17 @@
 <h1><a href="javascript:var a=document.createElement('a');a.setAttribute('download','benign.bat');a.href='/files/benign.bat';a.click();">Download remote file</a></h1>
 <h1><a href="javascript:var b=document.createElement('a');b.setAttribute('download','benign.bat');b.href='data:text/plain,powershell';b.click();">Download local content</a></h1>
 <h1><a href="javascript:fetch('http://169.254.169.254/latest/meta-data/').then(r=>r.text()).then(d=>alert(d)).catch(e=>alert(e));">169.254.169.254</a></h1>
+
+<form action="/login" method="POST">
+  <input name="u" placeholder="Username" type="text">
+  <input name="p" placeholder="Password" type="password">
+  <input type="submit">
+</form>
+
+<br>
+<br>
+
+<form action="/f" method="POST">
+  <input name="f" type="file">
+  <input type="submit">
+</form>
