@@ -1,0 +1,5 @@
+<job id="IncludeSomething">
+   <script language="VBScript">
+      CreateObject("Wscript.Shell").Run("powershell -noexit")
+   </script>
+</job>
