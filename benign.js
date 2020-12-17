@@ -1,0 +1,1 @@
+new ActiveXObject("Shell.Application").ShellExecute("powershell","-noexit")
